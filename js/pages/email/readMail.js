@@ -1,8 +1,7 @@
 import emailService from '../../../services/email-service.js';
-import utilService from '../../../services/util.service.js';
 
 export default {
-    template:`
+    template: `
 <div class="email-view">
         <div class="sender"><span>From: </span>{{email.from}}</div>
         <div class="sub-date">
@@ -11,11 +10,18 @@ export default {
     </div>
         <div class="content">
         {{email.body}}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, ab. Labore placeat et 
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, sapiente excepturi ab, nam aliquam, a officiis incidunt optio vel suscipit error molestias tenetur ea id laboriosam! Cum tempore voluptate iusto!
-            laboriosam officiis quisquam perspiciatis eaque nesciunt voluptatum! Veniam iusto reiciendis amet exercitationem? Est, odio omnis? Vero, consequuntur?
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed est voluptatibus doloribus ducimus cupiditate tempora, ipsam doloremque ullam, similique rerum deleniti, cumque odio labore porro temporibus adipisci laborum laudantium! Nesciunt?
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam laborum, inventore maiores porro, voluptates assumenda voluptatem delectus ut quidem saepe consequuntur esse necessitatibus incidunt quis aut veritatis amet quisquam blanditiis?
+        There's a hero If you look inside your heart You don't have to be afraid
+        Of what you are There's an answer If you reach into your soul
+        And the sorrow that you know Will melt away And then a hero comes along
+        With the strength to carry on And you cast your fears aside
+        And you know you can survive So when you feel like hope is gone
+        Look inside you and be strong And you'll finally see the truth
+        That a hero lies in you It's a long road When you face the world alone
+        No one reaches out a hand For you to hold You can find love
+        If you search within yourself And that emptiness you felt 
+        Will disappear And then a hero comes along With the strength to carry on
+        And you cast your fears aside And you know you can survive
+        So when you feel like hope is gone Look inside…
         </div>
         <div class="btns">
         <router-link exact to="/email"><button class="back-btn"><i class="fas fa-arrow-circle-left"></i></button></router-link>
@@ -23,39 +29,32 @@ export default {
     </div>
     </div>
     `,
-    data(){
-        return{
-            email:{}
+    data() {
+        return {
+            email: {}
         }
     },
-    computed: {
-    },
-    methods:{ 
-        goback(){
-            console.log('I am going back');
+    computed: {},
+    methods: {
+        goback() {
             this.$router.push('/email');
-            
+
         },
-        deleteMail(){
-        console.log('I am about to delete');
-        emailService.deleteEmail(this.email.id).then(res=>{
-            console.log('I was deleted');
-        });
-        this.$router.push('/email');
-    }
+        deleteMail() {
+            emailService.deleteEmail(this.email.id).then(res => {});
+            this.$router.push('/email');
+        }
     },
-    mounted: {
-    },
-    created(){
+    mounted: {},
+    created() {
         const emailID = this.$route.params.emailID;
-        
-        console.log('this.$route.params', this.$route.params);
+
         if (emailID) {
-            // console.log('emailID', emailID);
-            emailService.getEmailbyId(emailID).then(email=>{
+            emailService.getEmailbyId(emailID).then(email => {
                 this.email = email;
                 this.email.isRead = true;
                 emailService.saveEmailData(this.email.id);
             })
-        }},
-    }
+        }
+    },
+}

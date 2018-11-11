@@ -3,9 +3,9 @@ import userMsg from './cmps/user-msg.js'
 
 
 new Vue({
-    el: '#app',
-    router,
-    components: {
-      userMsg
-    }
-  })
+  el: '#app',
+  router,
+  components: {
+    userMsg
+  }
+})

@@ -19,25 +19,22 @@ function emailQuery(filter = null) {
         })
 }
 
-function emailSearchQuery(emails,searchSTR){
-  if(!searchSTR) return emails;
-  return emails.filter(email => email.subject.toUpperCase().includes(searchSTR.toUpperCase()));     
+function emailSearchQuery(emails, searchSTR) {
+    if (!searchSTR) return emails;
+    return emails.filter(email => email.subject.toUpperCase().includes(searchSTR.toUpperCase()));
 }
 
-function saveEmailData(mailId){
-    console.log('save this change ',mailId);
+function saveEmailData(mailId) {
     var tempMail = {};
-    
     return storageService.load(KEY)
         .then(emails => {
-                var emailIdx = emails.findIndex(email => email.id === mailId);
-                tempMail = emails[emailIdx];
-                tempMail.isRead = true;
-                emails.splice(emailIdx,1,tempMail);
+            var emailIdx = emails.findIndex(email => email.id === mailId);
+            tempMail = emails[emailIdx];
+            tempMail.isRead = true;
+            emails.splice(emailIdx, 1, tempMail);
             return storageService.store(KEY, emails);
-
         })
-    }
+}
 
 function getEmailbyId(emailId) {
     return storageService.load(KEY)
@@ -47,23 +44,11 @@ function getEmailbyId(emailId) {
         })
 }
 
-function getRead(){
-    return emailQuery().then(res => {
-        return res.reduce((acc, curreEmail) => acc + (+curreEmail.isRead), 0)
-    })
-}
-
-function getAll(){
+function getAll() {
     return storageService.load(KEY)
-    .then(emails => {
-        return emails.length;
-    })
-}
-
-function getUnRead(){
-    return emailQuery().then(res => {
-        return res.reduce((acc, curreEmail) => acc + (+!curreEmail.isRead), 0)
-    })
+        .then(emails => {
+            return emails.length;
+        })
 }
 
 function deleteEmail(emailId) {
@@ -86,14 +71,12 @@ function sendEmail(mail) {
         date: utilService.getDate(+new Date()),
         sentAt: +new Date()
     }
-    console.log('newEmail',newEmail);
-
     return storageService.load(KEY)
-    .then(emails => {
+        .then(emails => {
             emails.push(newEmail);
-        return storageService.store(KEY, emails);
+            return storageService.store(KEY, emails);
 
-    })
+        })
 }
 
 export default {
@@ -102,8 +85,6 @@ export default {
     deleteEmail,
     sendEmail,
     getAll,
-    getRead,
-    getUnRead,
     emailSearchQuery,
     saveEmailData
 }
@@ -112,7 +93,7 @@ function _creatInitialEmails() {
 
     return isDeletedByUser ? [] : [{
             id: utilService.makeId(),
-            from:'robertDeNiro@gmail.com',
+            from: 'robertDeNiro@gmail.com',
             subject: 'are you talkin to me',
             body: 'Change your gmail password',
             isRead: true,
@@ -122,7 +103,7 @@ function _creatInitialEmails() {
         },
         {
             id: utilService.makeId(),
-            from:'billGates@apple.com',
+            from: 'billGates@apple.com',
             subject: 'what about my offer',
             body: 'Change your gmail password',
             isRead: false,
@@ -132,7 +113,7 @@ function _creatInitialEmails() {
         },
         {
             id: utilService.makeId(),
-            from:'steveJobs@microsoft.com',
+            from: 'steveJobs@microsoft.com',
             subject: 'waiting for your approval',
             body: 'Change your gmail password',
             isRead: false,
@@ -142,7 +123,7 @@ function _creatInitialEmails() {
         },
         {
             id: utilService.makeId(),
-            from:'alPacino@microsoft.com',
+            from: 'alPacino@microsoft.com',
             subject: 'love you baby :*',
             body: 'Change your gmail password',
             isRead: true,
@@ -152,7 +133,7 @@ function _creatInitialEmails() {
         },
         {
             id: utilService.makeId(),
-            from:'robertDeNiro@gmail.com',
+            from: 'robertDeNiro@gmail.com',
             subject: 'tonight my place',
             body: 'Change your gmail password',
             isRead: false,
@@ -162,7 +143,7 @@ function _creatInitialEmails() {
         },
         {
             id: utilService.makeId(),
-            from:'billGates@gmail.com',
+            from: 'billGates@gmail.com',
             subject: 'excited about us start working together ',
             body: 'Change your gmail password',
             isRead: false,
@@ -172,7 +153,7 @@ function _creatInitialEmails() {
         },
         {
             id: utilService.makeId(),
-            from:'billGates@gmail.com',
+            from: 'billGates@gmail.com',
             subject: 'Saw and Tamara you are amazing guys ',
             body: 'Change your gmail password',
             isRead: true,

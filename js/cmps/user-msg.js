@@ -1,6 +1,6 @@
-import eventBus, {USR_MSG_DISPLAY} from '../../services/event-bus.service.js'
-
-
+import eventBus, {
+    USR_MSG_DISPLAY
+} from '../../services/event-bus.service.js';
 export default {
     template: `
         <section v-if="msg" class="user-msg" :class="msg.type">
@@ -8,9 +8,9 @@ export default {
             <h1>{{msg.txt}}</h1>
         </section>
     `,
-    data(){
+    data() {
         return {
-           msg: null
+            msg: null
         }
     },
     created() {
@@ -18,10 +18,10 @@ export default {
             this.msg = msg;
             setTimeout(this.closeMsg, 3000);
         })
-        
+
     },
-    methods:{
-        closeMsg(){
+    methods: {
+        closeMsg() {
             this.msg = null;
         }
     }

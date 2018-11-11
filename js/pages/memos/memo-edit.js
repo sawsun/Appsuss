@@ -1,9 +1,6 @@
 import memoService from '../../../services/memo-service.js';
 import utilService from '../../../services/util.service.js';
 
-// export default {
-// }
-
 export default {
     template: `
     <section class="memo-edit">
@@ -25,14 +22,18 @@ export default {
     `,
     data() {
         return {
-            memo: { title: '',type:'memoText', content: '', color:'lightgoldenrodyellow',imgUrl:''
-            ,createdAt:utilService.getDate((new Date())) }
+            memo: {
+                title: '',
+                type: 'memoText',
+                content: '',
+                color: 'lightgoldenrodyellow',
+                imgUrl: '',
+                createdAt: utilService.getDate((new Date()))
+            }
         }
     },
     created() {
         const memoId = this.$route.params.memoId;
-        console.log('memoId', memoId);
-        console.log('this.$route.params', this.$route.params);
         if (memoId) {
             memoService.getMemoById(memoId)
                 .then(memo => {
@@ -42,18 +43,18 @@ export default {
     },
     methods: {
         saveMemo() {
-            console.log(this.memo);
             memoService.saveMemo(this.memo)
                 .then(() => {
-                    console.log('Saved!');
                     this.$router.push('/memos');
                 })
         }
     },
-    computed:{
-        bgColor(){
-            return {'background-color': this.memo.color}
+    computed: {
+        bgColor() {
+            return {
+                'background-color': this.memo.color
+            }
         }
     }
-    
+
 }

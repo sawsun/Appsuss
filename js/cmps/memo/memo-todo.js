@@ -1,7 +1,6 @@
-import memoService from '../../../services/memo-service.js';
 export default {
     props: ['memo'],
-    name:'todo',
+    name: 'todo',
     template: `
     <div class="memo" :style="bgColor">
     <div class="title">{{memo.title}}
@@ -24,22 +23,21 @@ export default {
     </div>
     
     `,
-    created(){
-        console.log('this memo', this.memo)
-    },
-    computed:{
-        bgColor(){
-            return {'background-color': this.memo.color}
+    created() {},
+    computed: {
+        bgColor() {
+            return {
+                'background-color': this.memo.color
+            }
         }
     },
-    methods:{
-        deleteMemo(){
-            this.$emit('delete-memo',this.memo.id);
+    methods: {
+        deleteMemo() {
+            this.$emit('delete-memo', this.memo.id);
         },
-        pinThisMemo(){
-            console.log('i am pinthis',this.memo.id)
-            this.$emit('pin-memo',this.memo.id);
+        pinThisMemo() {
+            this.$emit('pin-memo', this.memo.id);
         }
-        
+
     }
 }

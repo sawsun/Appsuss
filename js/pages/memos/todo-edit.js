@@ -1,9 +1,6 @@
 'use strict';
-
 import memoService from '../../../services/memo-service.js';
 import utilService from '../../../services/util.service.js';
-
-
 export default {
     template: `
     <section class="memo-edit">
@@ -36,19 +33,21 @@ export default {
         
     </section>
     `,
-    
     data() {
         return {
             newTodo: '',
-            memo: { title: '', type:'memoTodo' , color: 'lightgoldenrodyellow', todos:[]
-            ,createdAt:utilService.getDate((new Date()))}
-        
+            memo: {
+                title: '',
+                type: 'memoTodo',
+                color: 'lightgoldenrodyellow',
+                todos: [],
+                createdAt: utilService.getDate((new Date()))
+            }
+
         }
     },
     created() {
         const memoId = this.$route.params.memoId;
-        console.log('memoId', memoId);
-        console.log('this.$route.params', this.$route.params);
         if (memoId) {
             memoService.getMemoById(memoId)
                 .then(memo => {
@@ -58,23 +57,26 @@ export default {
     },
     methods: {
         saveMemo() {
-            console.log(this.memo);
             memoService.saveMemo(this.memo)
                 .then(() => {
-                    console.log('Saved!');
                     this.$router.push('/memos');
                 })
         },
         addTodo() {
-            this.memo.todos.push({ todo: this.newTodo, isDone: false });
+            this.memo.todos.push({
+                todo: this.newTodo,
+                isDone: false
+            });
         },
         deleteTodo(todoIdx) {
             this.memo.todos.splice(todoIdx, 1);
         },
     },
-    computed:{
-        bgColor(){
-            return {'background-color': this.memo.color}
+    computed: {
+        bgColor() {
+            return {
+                'background-color': this.memo.color
+            }
         }
     }
 }

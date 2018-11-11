@@ -1,4 +1,3 @@
-
 export default {
     template: `
     <div class="filter">
@@ -22,7 +21,8 @@ export default {
     },
     methods: {
         filterMemo() {
-            this.$emit('filtered', {...this.filter})
+            this.$emit('filtered', { ...this.filter
+            })
         }
     }
 }

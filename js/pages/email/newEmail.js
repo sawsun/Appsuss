@@ -1,8 +1,6 @@
 import emailService from '../../../services/email-service.js';
-import utilService from '../../../services/util.service.js';
-
 export default {
-    template:`
+    template: `
     <div class="email-view">
         <div class="sender"><span>From: </span>
             <input type="text"  
@@ -32,49 +30,41 @@ export default {
         </div>
     </div>
     `,
-    data(){
-        return{
-            email:{
-                from:'',
-                subject:'',
-                body:''
+    data() {
+        return {
+            email: {
+                from: '',
+                subject: '',
+                body: ''
             }
         }
     },
-    computed: {
-    },
-    methods:{ 
-        goback(){
-            console.log('I am going back');
+    computed: {},
+    methods: {
+        goback() {
             this.$router.push('/email');
-            
+
         },
 
-        sendEmail(){
-            var tmp = {...this.email}
-            console.log('this.email',tmp);
-            emailService.sendEmail(tmp).then(res=>{
-                console.log('Sending . . . ');
-                setTimeout(()=>{
+        sendEmail() {
+            var tmp = { ...this.email
+            }
+            emailService.sendEmail(tmp).then(res => {
+                setTimeout(() => {
                     this.$router.push('/email');
-                },500)
+                }, 500)
             });
-            //
-        }    
-    
+        }
     },
-    mounted: {
-    },
-    created(){
+    mounted: {},
+    created() {
         const emailID = this.$route.params.emailID;
-        
-        console.log('this.$route.params', this.$route.params);
         if (emailID) {
-            // console.log('emailID', emailID);
-            emailService.getEmailbyId(emailID).then(email=>{
+            emailService.getEmailbyId(emailID).then(email => {
                 this.email = email;
                 this.email.isRead = true;
                 emailService.saveEmailData(this.email.id);
             })
-        }},
-    }
+        }
+    },
+}

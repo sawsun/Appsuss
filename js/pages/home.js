@@ -1,5 +1,5 @@
 export default {
-    template:`
+    template: `
    <section class="home">
     <h1 class="home-title flash">Welcome to our appSus</h1>
     <div class="person-container">

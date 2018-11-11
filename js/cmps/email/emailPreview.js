@@ -1,8 +1,8 @@
 import emailService from '../../../services/email-service.js'
 
-export default{
-    props:['email'],
-    template:`
+export default {
+    props: ['email'],
+    template: `
     <div class="sub-preview-container">
     <span><span @click.stop="toggle(email)">::</span>
      <i class="fas fa-envelope"
@@ -10,12 +10,12 @@ export default{
     <span class="at">{{this.email.date}}</span>
     </div>
     `,
-    data(){
-        return{
-            email:{}
+    data() {
+        return {
+            email: {}
         }
     },
-    methods:{
+    methods: {
         //to do make it toggle between mail status , read/unread
         // toggle(email){
         //     emailService.getEmailbyId(email.id).then(email=>{
@@ -23,7 +23,7 @@ export default{
         //     })
         // }
     },
-    computed:{
+    computed: {
 
     }
 }

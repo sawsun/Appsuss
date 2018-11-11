@@ -1,4 +1,3 @@
-
 export default {
     props: ['memo'],
     template: `
@@ -23,25 +22,20 @@ export default {
 </div>
 </div>
     `,
-    created(){
-        console.log('this memo', this.memo)
-    },
-    computed:{
-        bgColor(){
-            return {'background-color': this.memo.color}
+    created() {},
+    computed: {
+        bgColor() {
+            return {
+                'background-color': this.memo.color
+            }
         }
     },
-    methods:{
-        deleteMemo(){
-            console.log('deletin',this.memo.id);
-            this.$emit('delete-memo',this.memo.id);
-            // memoService.deleteMemo(this.memo.id).then(
-            //     console.log('Item was deleted')            
-            // )
+    methods: {
+        deleteMemo() {
+            this.$emit('delete-memo', this.memo.id);
         },
-        pinThisMemo(){
-            console.log('i am pinthis',this.memo.id)
-            this.$emit('pin-memo',this.memo.id);
+        pinThisMemo() {
+            this.$emit('pin-memo', this.memo.id);
         }
     }
 }

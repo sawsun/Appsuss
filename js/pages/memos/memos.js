@@ -14,24 +14,23 @@ export default {
     <memo-list v-bind:memos="memos" :memos="memos"></memo-list>
 </section>
     `,
-    data(){
-        return{
-            memos : []
+    data() {
+        return {
+            memos: []
         }
     },
-    created(){
+    created() {
         memoService.memoQuery()
-        .then(memos => this.memos = memos);
+            .then(memos => this.memos = memos);
     },
-    methods:{
-        setFilter(filter){
+    methods: {
+        setFilter(filter) {
             memoService.memoQuery(filter)
-            .then(memos => this.memos = memos)
+                .then(memos => this.memos = memos)
         }
     },
-    components:{
+    components: {
         memoList,
         memoFilter,
     }
 }
-
