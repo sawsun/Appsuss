@@ -137,7 +137,7 @@ function creatInitialMemos() {
             title: 'Tamara\'s walk',
             content: 'Fresh air will be good for her!',
             color: utilService.rndColor(),
-            imgUrl: 'img/sawtam.JPG',
+            imgUrl: 'img/sawtam.jpg',
             createdAt: utilService.getDate(1490562000000),
             isPinned: false,
 
