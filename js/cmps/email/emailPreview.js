@@ -6,7 +6,8 @@ export default {
     <div class="sub-preview-container">
     <span><span @click.stop="toggle(email)">::</span>
      <i class="fas fa-envelope"
-     :class="{'fa-envelope-open' : email.isRead }"></i>{{this.email.subject}}</span> 
+     :class="{'fa-envelope-open' : email.isRead }"></i>
+     {{this.email.subject}}</span> 
     <span class="at">{{this.email.date}}</span>
     </div>
     `,
